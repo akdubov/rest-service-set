@@ -28,17 +28,18 @@ export CRC_REGISTRY
 
 mvn clean install
 
-cd ./rest-server-service
-
-./server-deploy.sh
-
-cd ../rest-client-regular
+cd ./rest-client-regular
  
 ./client-regular-deploy.sh 
 
 cd ../rest-client-privileged
  
 ./client-privileged-deploy.sh 
+
+cd ../rest-server-service
+
+./server-deploy.sh
+
 
 
 echo "finish"

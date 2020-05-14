@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ClientResponse {
 
 
-    private String clientServiceName;
+    private String clientName;
     private String resultUID;
     private String result;
 
@@ -17,7 +17,7 @@ public class ClientResponse {
 
     public ClientResponse(String clientServiceName, String resultUID, String result) {
         this();
-        this.clientServiceName = clientServiceName;
+        this.clientName = clientServiceName;
         this.resultUID = resultUID;
         this.result = result;
     }
@@ -30,12 +30,12 @@ public class ClientResponse {
         this.result = result;
     }
 
-    public String getClientServiceName() {
-        return clientServiceName;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClientServiceName(String clientServiceName) {
-        this.clientServiceName = clientServiceName;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
     public String getResultUID() {

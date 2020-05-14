@@ -8,17 +8,14 @@ spec:
   gateways:
     - rest-service-server-gw
   http:
-  - name: "privileged"
+  - match:
+    - sourceLabels:
+        app: rest-client-privileged
     route:
     - destination:
         host: rest-serveice-server.svc.cluster.local
-        port:
-          number: 8080
         subset: privileged
-  - name: "regular"
-    route:
+  - route:
     - destination:
         host: rest-serveice-server.svc.cluster.local
-        port:
-          number: 8080
         subset: regular
