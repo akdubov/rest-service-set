@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%-5level] %logger - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+
+    <!--<appender name="CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>9999</queueSize>
+        <neverBlock>true</neverBlock>
+        <maxFlushTime>10000</maxFlushTime>
+        <appender-ref ref="CONSOLE_SYNC"/>
+    </appender>-->
+
+
+    <logger name="ru.vtb" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+sudo
+    <root level="error">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+</configuration>

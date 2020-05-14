@@ -1,0 +1,43 @@
+#apiVersion: extensions/v1beta1
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rest-client-privileged
+    version: v1
+  name: rest-client-privileged
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest-client-privileged
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: rest-client-privileged
+        version: v1
+      annotations:
+        sidecar.istio.io/inject: "true"
+#        sidecar.istio.io/logLevel: "debug"
+    spec:
+      containers:
+        - env:
+            - name: JAVA_OPTIONS
+              value: -Xms128m -Xmx128m -Xmn128m
+          name: rest-client-privileged
+          image: image-registry.openshift-image-registry.svc:5000/rest-service-test/rest-client-privileged:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "128m"
+            limits:
+              memory: "400Mi"
+              cpu: "256m"
+          securityContext:
+            privileged: false
