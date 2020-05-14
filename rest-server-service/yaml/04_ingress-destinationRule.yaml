@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: rest-service-server-gw
+spec:
+  host: rest-service-server.rest-service-test.svc.cluster.local
+  subsets:
+  - name: privileged
+    labels:
+      version: v1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 100
+        http:
+          http1MaxPendingRequests: 10
+          maxRequestsPerConnection: 200
+  - name: regular
+    lables:
+      version: v1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 3
+        http:
+          http1MaxPendingRequests: 3
+          maxRequestsPerConnection: 10

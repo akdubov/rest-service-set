@@ -8,12 +8,6 @@ docker tag rest-service-test/rest-service-server $CRC_REGISTRY/rest-service-test
 
 docker push $CRC_REGISTRY/rest-service-test/rest-service-server
 
-oc apply -f yaml/01_deployment-server.yml -n rest-service-test
-
-#
-oc apply -f yaml/02_service-server.yml -n rest-service-test
+./server_config.sh
 
 oc expose svc/rest-service-server -n rest-service-test
-
-
-
