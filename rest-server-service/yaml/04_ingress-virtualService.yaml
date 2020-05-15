@@ -1,21 +1,21 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: rest-service-server-through-ingress-gateway
+  name: rest-service-server-gw-vs
 spec:
   hosts:
     - "*" # Внешний Hostname вашего сервиса (Внешнее DNS имя)
   gateways:
-    - rest-service-server-gw
+    - igw-rest-service-server
   http:
   - match:
     - sourceLabels:
         app: rest-client-privileged
     route:
     - destination:
-        host: rest-serveice-server.svc.cluster.local
+        host: rest-service-server.svc.cluster.local
         subset: privileged
   - route:
     - destination:
-        host: rest-serveice-server.svc.cluster.local
+        host: rest-service-server.svc.cluster.local
         subset: regular

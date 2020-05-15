@@ -1,8 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: rest-service-server-gw
-  namespace: rest-service-test
+  name: igw-rest-service-server
 spec:
   selector:
     istio: ingressgateway # use Istio default gateway implementation
@@ -12,4 +11,4 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "*" # accept all traffic because in CRC I can only call Ingress by IP
+        - "*"
