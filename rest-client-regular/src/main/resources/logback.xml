@@ -17,7 +17,7 @@
     </appender>-->
 
 
-    <logger name="ru.vtb" level="debug" additivity="false">
+    <logger name="ru.vtb" level="info" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 sudo

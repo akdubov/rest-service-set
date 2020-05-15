@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.vtb.dis.pilot01.structure.ClientResponse;
 import ru.vtb.dis.pilot01.structure.CommonServerResponse;
 
+import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -33,15 +34,17 @@ public class PrivilegedClientController {
                 serviceName);
         LOGGER.debug("call URL: {}", callUrl);
 
+        long startTime = new Date().getTime();
         RestTemplate restTemplate = new RestTemplate();
         CommonServerResponse response = restTemplate.getForObject(callUrl, CommonServerResponse.class);
         if (response != null) {
-            LOGGER.info("Response: ({} -> {}): {}",
+            LOGGER.info("{} Response: ({} -> {}): {}",
+                    String.format("[%.3f sec.]", (new Date().getTime() - startTime) / 1000.0),
                     response.getRequestUID(), response.getResponseUID(), response.getResultText());
             return new ClientResponse(serviceName, response.getResponseUID(), response.getResultText());
         } else {
             LOGGER.warn("Response = NULL");
-            return new ClientResponse("", "", "no result...");
+            throw new IllegalArgumentException("Response = NULL");
         }
     }
 }
