@@ -13,9 +13,9 @@ spec:
         app: rest-client-privileged
     route:
     - destination:
-        host: rest-service-server.svc.cluster.local
+        host: rest-service-server.rest-service-test.svc.cluster.local
         subset: privileged
   - route:
     - destination:
-        host: rest-service-server.svc.cluster.local
+        host: rest-service-server.rest-service-test.svc.cluster.local
         subset: regular

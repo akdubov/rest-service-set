@@ -9,7 +9,7 @@ spec:
       tcp:
         maxConnections: 3
       http:
-        http1MaxPendingRequests: 1
+        http1MaxPendingRequests: 100
         maxRequestsPerConnection: 1
   subsets:
   - name: privileged
