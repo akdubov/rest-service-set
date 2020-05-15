@@ -1,16 +1,17 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: rest-service-server-through-ingress-gateway
+  name: rest-service-server-destination
 spec:
   host: rest-service-server.rest-service-test.svc.cluster.local
-  trafficPolicy:
-    connectionPool:
-      tcp:
-        maxConnections: 3
-      http:
-        http1MaxPendingRequests: 100
-        maxRequestsPerConnection: 1
+#  trafficPolicy:
+#    connectionPool:
+#      tcp:
+#        maxConnections: 1
+#      http:
+#        maxRetries: 3
+#        http1MaxPendingRequests: 1
+#        maxRequestsPerConnection: 1
   subsets:
   - name: privileged
     labels:
@@ -18,17 +19,17 @@ spec:
     trafficPolicy:
       connectionPool:
         tcp:
-          maxConnections: 100
+          maxConnections: 200
         http:
-          http1MaxPendingRequests: 10
+          http1MaxPendingRequests: 100
           maxRequestsPerConnection: 200
   - name: regular
     labels:
       version: v1
-#    trafficPolicy:
-#      connectionPool:
-#        tcp:
-#          maxConnections: 3
-#        http:
-#          http1MaxPendingRequests: 1
-#          maxRequestsPerConnection: 1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 1
+        http:
+          http1MaxPendingRequests: 1
+          maxRequestsPerConnection: 1
