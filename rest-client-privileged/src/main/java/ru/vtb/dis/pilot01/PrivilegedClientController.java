@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import ru.vtb.dis.pilot01.structure.ClientResponse;
 import ru.vtb.dis.pilot01.structure.CommonServerResponse;
@@ -44,7 +45,7 @@ public class PrivilegedClientController {
             return new ClientResponse(serviceName, response.getResponseUID(), response.getResultText());
         } else {
             LOGGER.warn("Response = NULL");
-            throw new IllegalArgumentException("Response = NULL");
+            throw new RestClientException("Response = NULL");
         }
     }
 }
