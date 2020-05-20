@@ -18,10 +18,10 @@ spec:
     trafficPolicy:
       connectionPool:
         tcp:
-          maxConnections: 200
+          maxConnections: 300
         http:
-          http1MaxPendingRequests: 100
-          maxRequestsPerConnection: 200
+          http1MaxPendingRequests: 300
+          maxRequestsPerConnection: 100
   - name: regular
     labels:
       version: v1
