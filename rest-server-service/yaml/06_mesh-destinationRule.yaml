@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: rest-service-server-destination
+  name: rest-server-service-destination
 spec:
-  host: rest-service-server.rest-service-test.svc.cluster.local
+  host: rest-server-service.rest-service-test.svc.cluster.local
 #  trafficPolicy:
 #    connectionPool:
 #      tcp:

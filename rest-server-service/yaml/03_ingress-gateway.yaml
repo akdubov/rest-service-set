@@ -1,31 +1,31 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: igw-rest-service-server
+  name: igw-rest-server-service
 spec:
   selector:
     istio: ingressgateway # use Istio default gateway implementation
-#    app: rest-service-server
+#    app: rest-server-service
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP
     hosts:
-#    - istio-ingressgateway-istio-system.apps-crc.testing
-    - "*"
+    - istio-ingressgateway-istio-system.apps-crc.testing
+#    - "*"
 ---
 
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: rest-service-server-vs2
+  name: rest-server-service-vs2
 spec:
   hosts:
-    - "*"
-#    - istio-ingressgateway-istio-system.apps-crc.testing
+#    - "*"
+    - istio-ingressgateway-istio-system.apps-crc.testing
   gateways:
-    - igw-rest-service-server
+    - igw-rest-server-service
   http:
   - match:
     - headers:
@@ -33,7 +33,7 @@ spec:
           exact: vip
     route:
       - destination:
-          host: rest-service-server.rest-service-test.svc.cluster.local
+          host: rest-server-service.rest-service-test.svc.cluster.local
           port:
             number: 8080
           subset: privileged
@@ -42,7 +42,7 @@ spec:
         prefix: /reserved
     route:
       - destination:
-          host: rest-service-server.rest-service-test.svc.cluster.local
+          host: rest-server-service.rest-service-test.svc.cluster.local
           port:
             number: 8080
           subset: privileged
@@ -51,7 +51,7 @@ spec:
         prefix: /getServiceResult
     route:
     - destination:
-        host: rest-service-server.rest-service-test.svc.cluster.local
+        host: rest-server-service.rest-service-test.svc.cluster.local
         port:
           number: 8080
         subset: regular

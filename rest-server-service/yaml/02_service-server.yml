@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: rest-service-server
+  name: rest-server-service
   labels:
-    app: rest-service-server
+    app: rest-server-service
 spec:
   ports:
     - name: http
       port: 8080
       targetPort: 8080
   selector:
-    app: rest-service-server
+    app: rest-server-service

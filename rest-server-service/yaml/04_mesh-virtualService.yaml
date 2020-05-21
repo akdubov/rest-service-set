@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: rest-service-server-vs1
+  name: rest-server-service-vs1
 spec:
   hosts:
-    - rest-service-server.rest-service-test.svc.cluster.local
+    - rest-server-service.rest-service-test.svc.cluster.local
   gateways:
     - mesh
   http:
@@ -14,11 +14,11 @@ spec:
         app: rest-client-privileged
     route:
     - destination:
-        host: rest-service-server.rest-service-test.svc.cluster.local
+        host: rest-server-service.rest-service-test.svc.cluster.local
         subset: privileged
 
   - name: default
     route:
     - destination:
-        host: rest-service-server.rest-service-test.svc.cluster.local
+        host: rest-server-service.rest-service-test.svc.cluster.local
         subset: regular

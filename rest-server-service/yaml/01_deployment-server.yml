@@ -3,19 +3,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: rest-service-server
+    app: rest-server-service
     version: v1
-  name: rest-service-server
+  name: rest-server-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rest-service-server
+      app: rest-server-service
       version: v1
   template:
     metadata:
       labels:
-        app: rest-service-server
+        app: rest-server-service
         version: v1
       annotations:
         sidecar.istio.io/inject: "true"
@@ -26,7 +26,7 @@ spec:
             - name: JAVA_OPTIONS
               value: -Xms128m -Xmx128m -Xmn128m
           name: rest-service-server
-          image: image-registry.openshift-image-registry.svc:5000/rest-service-test/rest-service-server:latest
+          image: image-registry.openshift-image-registry.svc:5000/rest-service-test/rest-server-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
