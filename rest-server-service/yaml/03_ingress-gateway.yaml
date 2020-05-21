@@ -38,6 +38,16 @@ spec:
             number: 8080
           subset: privileged
   - match:
+      - queryParams:
+          callerServiceName:
+            exact: vip-client-service
+    route:
+      - destination:
+          host: rest-server-service.rest-service-test.svc.cluster.local
+          port:
+            number: 8080
+          subset: privileged
+  - match:
     - uri:
         prefix: /reserved
     route:

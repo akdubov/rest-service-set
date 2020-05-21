@@ -9,7 +9,6 @@ export CRC_REGISTRY
 docker login -u kubeadmin -p $(oc whoami -t) $CRC_REGISTRY
 
 DEL_RES="$(oc get project.project.openshift.io/rest-service-test --show-kind --ignore-not-found)"
-
 if [ ${#DEL_RES} != 0 ]; 
 then 
    oc delete project rest-service-test
