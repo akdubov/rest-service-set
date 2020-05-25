@@ -3,6 +3,10 @@ echo "Start installation 'rest-service-test'..."
 
 eval $(crc oc-env)
 
+ISTIO_MEMBERS=$(oc get smmr default -n istio-system -o jsonpath='{.spec.members}')
+echo ISTIO MEMBERS NAMESPACE: $ISTIO_MEMBERS
+sleep 5
+
 CRC_REGISTRY=default-route-openshift-image-registry.apps-crc.testing
 export CRC_REGISTRY
 
